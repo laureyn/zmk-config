@@ -26,7 +26,7 @@ ZMK_BEHAVIOR(circonflex, macro,
      tap-ms = <5>;
      bindings
      = <&macro_press &kp LALT>
-     , <&macro_tap &kp N0 &kp N1 &kp N2 &kp N8>
+     , <&macro_tap &kp N0 &kp N0 &kp N5 &kp E>
      , <&macro_release &kp LALT>
      ;
 )
