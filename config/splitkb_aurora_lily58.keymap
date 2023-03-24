@@ -137,10 +137,10 @@ ZMK_BEHAVIOR(ss_cw, tap_dance,
     bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
 )
 
-// tap: é | double-tap: è | hold: num-layer
+// tap: u | double-tap: ù | hold: num-layer
 ZMK_BEHAVIOR(fr_u, tap_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp u>, <&u_grave>;
+    bindings = <&kp U>, <&u_grave>;
 )
 
 /* Combo */
