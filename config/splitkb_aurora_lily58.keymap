@@ -62,6 +62,15 @@ ZMK_BEHAVIOR(e_circonflex, macro,
      , <&macro_release &kp LALT>
      ;
 )
+ZMK_BEHAVIOR(o_circonflex, macro,
+     wait-ms = <10>;
+     tap-ms = <5>;
+     bindings
+     = <&macro_press &kp LALT>
+     , <&macro_tap &kp KP_N1 &kp KP_N4 &kp KP_N7>
+     , <&macro_release &kp LALT>
+     ;
+)
 ZMK_BEHAVIOR(a_grave, macro,
      wait-ms = <10>;
      tap-ms = <5>;
@@ -137,6 +146,18 @@ ZMK_BEHAVIOR(ss_cw, tap_dance,
     bindings = <&sk LSHFT>, <&caps_word>, <CANCEL>;
 )
 
+// tap: e | double-tap: ê | hold: num-layer
+ZMK_BEHAVIOR(fr_e, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp E>, <&e_circonflex>;
+)
+
+// tap: o | double-tap: ô | hold: num-layer
+ZMK_BEHAVIOR(fr_o, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp O>, <&o_circonflex>;
+)
+
 // tap: u | double-tap: ù | hold: num-layer
 ZMK_BEHAVIOR(fr_u, tap_dance,
     tapping-term-ms = <200>;
@@ -165,11 +186,11 @@ ZMK_LAYER(default_layer,
      // ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮                                             ╭──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────╮
           &kp ESC            &kp DQT            &kp PIPE           &kp AT             &kp AMPS           &euro                                                            &kp DOLLAR         &kp PLUS           &kp MINUS          &kp FSLH           &kp STAR           &kp PERCENT
      // ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤                                             ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤
-          &kp TAB            &kp B              &e_aigu            &kp P              &kp O              &kp Z                                                            &kp W              &kp V              &kp D              &kp L              &kp J              &kp EQUAL
+          &kp TAB            &kp B              &e_aigu            &kp P              &fr_o              &kp Z                                                            &kp W              &kp V              &kp D              &kp L              &kp J              &kp EQUAL
      // ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤                                             ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤
-          &ss_cw             &kp A              &fr_u              &kp I              &kp E              &kp COMMA                                                        &kp C              &kp T              &kp S              &kp R              &kp N              &kp M
+          &ss_cw             &kp A              &fr_u              &kp I              &fr_e              &kp COMMA                                                        &kp C              &kp T              &kp S              &kp R              &kp N              &kp M
      // ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤ ╭──────────────────╮   ╭──────────────────╮ ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤
-          &kp LCTRL          &a_grave           &kp Y              &kp X              &kp DOT            &kp K                &kp C_MUTE             &e_circonflex        &kp SINGLE_QUOTE   &kp Q              &kp G              &kp H              &kp F              &kp RCTRL
+          &kp LCTRL          &a_grave           &kp Y              &kp X              &kp DOT            &kp K                &kp C_MUTE             &kp C_PLAY_PAUSE     &kp SINGLE_QUOTE   &kp Q              &kp G              &kp H              &kp F              &kp RCTRL
      // ╰──────────────────┴──────────────────┴──────────────────┼──────────────────┼──────────────────┼──────────────────┤ ├──────────────────┤   ├──────────────────┤ ├──────────────────┼──────────────────┼──────────────────┼──────────────────┴──────────────────┴──────────────────╯
                                                                    &kp LGUI           &kp LALT           &mo SYM              &kp SPACE              &kp RET              &ss_numnav         &kp BACKSPACE      &kp RALT
      //                                                          ╰──────────────────┴──────────────────┴──────────────────╯ ╰──────────────────╯   ╰──────────────────╯ ╰──────────────────┴──────────────────┴──────────────────╯
@@ -217,7 +238,7 @@ ZMK_LAYER(symbols_layer,
      // ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤                                             ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤
           &kp LSHFT          &kp LESS_THAN      &kp LBKT           &kp LBRC           &kp LPAR           &kp UNDERSCORE                                                   &c_cedille         &kp RPAR           &kp RBRC           &kp RBKT           &kp GREATER_THAN   &none
      // ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤ ╭──────────────────╮   ╭──────────────────╮ ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┼──────────────────┤
-          &kp LCTRL          &undo              &cut               &copy              &paste             &redo                &kp C_MUTE             &e_circonflex        &kp QMARK          &none              &none              &none              &none              &kp RCTRL
+          &kp LCTRL          &undo              &cut               &copy              &paste             &redo                &kp C_MUTE             &kp C_PLAY_PAUSE     &kp QMARK          &none              &none              &none              &none              &kp RCTRL
      // ╰──────────────────┴──────────────────┴──────────────────┼──────────────────┼──────────────────┼──────────────────┤ ├──────────────────┤   ├──────────────────┤ ├──────────────────┼──────────────────┼──────────────────┼──────────────────┴──────────────────┴──────────────────╯
                                                                    &kp LGUI           &kp LALT           &mo SYM              &kp SPACE              &kp RET              &ss_numnav         &kp DEL            &kp RALT
      //                                                          ╰──────────────────┴──────────────────┴──────────────────╯ ╰──────────────────╯   ╰──────────────────╯ ╰──────────────────┴──────────────────┴──────────────────╯
